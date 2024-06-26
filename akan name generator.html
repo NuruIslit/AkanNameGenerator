@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AKAN Name Generator</title>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <style>
+            form{
+                display: flex;
+                flex-direction: column;
+                width: 300px;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .form-group{
+                align-items: center;
+            }
+            body, html{
+                font-family: Arial, sans-serif;
+                height: 100%;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color:white;
+            }
+            body{
+                background-image: url('https://wallpaper.forfun.com/fetch/c5/c5978b3480c88b74ab332c0d99197de0.jpeg');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+            input{
+                display: block;
+                margin: 10px 0;
+                margin-bottom: 10px;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            button {
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                background-color: #007BFF;
+                color: white;
+                cursor: pointer;
+            }
+            label{
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+            button:hover {
+                background-color: #0056b3;
+            }
+            .radio{
+                display: flex;
+                align-items: center;
+                margin-bottom: 15px;
+            }
+            .radio input{
+                margin-right: 10px;
+            }
+            .flex-container{
+                flex-wrap: wrap;
+            }
+        </style>
+        <div class="flex-container">
+            <form>
+                <div class = "form-group">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" required><br><br>
+
+                    <label for="gender">Gender:</label><br>
+                    <label for="male">Male</label><br>
+                    <input type="radio" id="male" name="gender" value="male" required>
+                    <label for="female">Female</label><br>
+                    <input type="radio" id="female" name="gender" value="female" required><br>
+                    <button type="button" onclick="generateAkanName()">Generate Name</button>
+                </div>
+            </form>
+            <p id="result"></p>
+        </div>
+        <script>
+            function generateAkanName(){
+                const dob = document.getElementById('dob').value;
+                const gender = document.querySelector('input[name="gender"]:checked').value;
+
+                if (dob && gender){
+                    const date = new Date(dob);
+                    const dayOfweek = date.getDay();
+                    const maleNames = ["Kwasi", "Kwadwo", "Kwabena", "Kwaku", "Yaw", "Kofi", "Kwame"];
+                    const femaleNames = ["Akosua", "Adwoa", "Abenaa", "Akua", "Yaa", "Afia", "Ama"];
+                    const akanName = gender=== "male"? maleNames[dayOfweek]: femaleNames[dayOfweek];
+
+                    document.getElementById('result').innerText = "Generated Akan Name:" + akanName;
+                }else{
+                        document.getElementById('result').innerText = "Please fill all fields.";
+                    }
+                }
+        </script>
+    </body>
+</html>
